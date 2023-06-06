@@ -19,7 +19,7 @@
 封装的通用客户端类[早期版本]，该类无需手动去判断客户端版本，使用通用的接口进行调用。
 
 实现细节查看 [链接](https://github.com/Maasea/sgmodule/blob/322ed3ca8528cd2c71f435abf9bbd4c8f042e0ee/Script/Youtube/lib/client.ts)
-1. 生成实例
+#### 1 生成实例
 
 ```js
 import Client from "./lib/client.js";
@@ -27,7 +27,7 @@ import Client from "./lib/client.js";
 const $ = Client.getInstance("Script Name", { debug: true });
 ```
 
-2. 使用方法
+#### 2 使用方法
 
 ```js
 $.request == $request;
@@ -68,28 +68,59 @@ $.fetch({ bodyBytes: Uint8Array });
 $.request.id  
 ```
 
-3. 完整接口
+#### 常用接口
 
-```js
-static getInstance(name ? : string, options ? : { debug? : boolean; }):Client：/*静态方法，返回客户端的实例。*/
+1. 属性
+```typescript
+// 等价于 $request
+request: CRequest;
 
-getVal(key:string) /*获取持久化存储的值 */
-setVal(val:string, key:string):void：/*写入持久化存储的值 */
+// 等价于 $response
+response: CResponse;
 
-getJSON(key:string, alter ? : object):object/*以JSON 的形式读取持久化存储 */
-setJSON(val:object, key:string):void：/*以JSON 的形式写入持久化存储 */
+```
+2. 方法
+```typescript
+interface Client {
+  // 静态方法，返回客户端的实例。
+  static getInstance(name?: string, options?: { debug?: boolean; }): Client;
 
-fetch(request:CFetchRequest):Promise < CFetchResponse >：/*发送请求 */
+  // 获取持久化存储的值
+  getVal(key: string): any;
 
-msg(title ? : string, subTitle ? : string, desc ? : string, url ? : string):void：/*显示通知 */
-log(val:any):void：/*等价于 console.log */
+  // 写入持久化存储的值
+  setVal(val: string, key: string): void;
 
-timeStart(label:string):void：/*计时器开始 */
-timeEnd(label:string):void：/*计时器结束 */
+  // 以JSON 的形式读取持久化存储
+  getJSON(key: string, alter?: object): object;
 
-done(done:CDone):void：/*等价于 $done(obj) */
-exit():void：/*等价于 $done({}) */
-reject():void：/*等价于 $done() */
+  // 以JSON 的形式写入持久化存储
+  setJSON(val: object, key: string): void;
+
+  // 发送请求
+  fetch(request: CFetchRequest): Promise<CFetchResponse>;
+
+  // 显示通知
+  msg(title?: string, subTitle?: string, desc?: string, url?: string): void;
+
+  // 等价于 console.log
+  log(val: any): void;
+
+  // 计时器开始
+  timeStart(label: string): void;
+
+  // 计时器结束
+  timeEnd(label: string): void;
+
+  // 等价于 $done(obj)
+  done(done: CDone): void;
+
+  // 等价于 $done({})
+  exit(): void;
+
+  // 等价于 $done()
+  reject(): void;
+}
 ```
 
 ### 2.2 lib/urls.js
