@@ -10,7 +10,7 @@
 
 1. 安装 `nodejs` 以进行后续项目的部署
 2. 在项目下执行 `npm i` 以安装 `esbuild`
-3. 使用 `npm build` 将代码打包成完整的 `js` 文件
+3. 使用 `npm run build` 将代码打包成完整的 `js` 文件
 
 ## 2 内置方法
 
@@ -54,7 +54,7 @@ $.done({ body: "" });
 1. `bodyBytes` 成为通用接口
 
 ```js
-// 类型 Qx $response.bodyBytes,Surge $response.body
+// 类似 Qx $response.bodyBytes,Surge $response.body
 $.response.bodyBytes; // 将返回 Uint8Array
 
 // 类似 surge binary-mode=true
@@ -72,15 +72,21 @@ $.request.id
 
 ```js
 static getInstance(name ? : string, options ? : { debug? : boolean; }):Client：/*静态方法，返回客户端的实例。*/
+
 getVal(key:string) /*获取持久化存储的值 */
 setVal(val:string, key:string):void：/*写入持久化存储的值 */
+
 getJSON(key:string, alter ? : object):object/*以JSON 的形式读取持久化存储 */
 setJSON(val:object, key:string):void：/*以JSON 的形式写入持久化存储 */
+
 fetch(request:CFetchRequest):Promise < CFetchResponse >：/*发送请求 */
+
 msg(title ? : string, subTitle ? : string, desc ? : string, url ? : string):void：/*显示通知 */
 log(val:any):void：/*等价于 console.log */
+
 timeStart(label:string):void：/*计时器开始 */
 timeEnd(label:string):void：/*计时器结束 */
+
 done(done:CDone):void：/*等价于 $done(obj) */
 exit():void：/*等价于 $done({}) */
 reject():void：/*等价于 $done() */
