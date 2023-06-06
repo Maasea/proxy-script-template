@@ -1,7 +1,7 @@
 {
   "name": "proxy-script-template",
   "version": "1.0.0",
-  "description": "A template to assist you in writing proxy scripts",
+  "description": "A template to assist you in writing proxy tool scripts",
   "main": "index.js",
   "type": "module",
   "scripts": {
