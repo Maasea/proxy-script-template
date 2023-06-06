@@ -68,7 +68,31 @@ $.fetch({ bodyBytes: Uint8Array });
 $.request.id  
 ```
 
+3. `done` 统一用法
+
+```typescript
+$.done({
+    status?: number,
+    headers?: Record<string, string>,
+    body?: string,
+    bodyBytes?: Uint8Array
+})
+
+// 或者在 request 类型脚本中直接返回结果
+
+$.done({
+    response: {
+        status?: number,
+        headers?: Record<string, string>, 
+        body?: string, 
+        bodyBytes?: Uint8Array
+    }
+})
+```
+
 #### 常用接口
+
+所有类型相关的定义可以在 types 文件夹中查看
 
 1. 属性
 ```typescript
