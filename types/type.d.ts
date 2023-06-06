@@ -38,6 +38,13 @@ export interface FetchResponse<T> {
 /**
  * Universal Client API
  */
+
+// $.request
+declare interface CRequest extends BRequest<string> {
+    id?: string
+    bodyBytes?: Uint8Array
+}
+
 // $.response
 export interface CResponse extends BResponse<string> {
     id: string

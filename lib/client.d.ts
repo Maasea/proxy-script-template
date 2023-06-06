@@ -21,7 +21,7 @@ export default abstract class Client {
     static getInstance(name?: string, options?: {
         debug?: boolean;
     }): Client;
-    abstract init(): void;
+    protected abstract init(): void;
     abstract getVal(key: string): string | null | undefined;
     abstract setVal(val: string, key: string): void;
     abstract fetch(request: CFetchRequest): Promise<CFetchResponse>;
@@ -44,7 +44,7 @@ declare class SurgeClient extends Client {
     };
     protected getFn<T>(t: T, p: string, receiver: any): any;
     protected setFn<T>(t: T, p: string, newValue: any, receiver: any): boolean;
-    init(): void;
+    protected init(): void;
     getVal(key: string): string | null | undefined;
     setVal(val: string, key: string): void;
     msg(title?: string, subTitle?: string, desc?: string, url?: string): void;
@@ -57,7 +57,7 @@ declare class QuanXClient extends Client {
         status: string;
     };
     static transferBodyBytes(bodyBytes: Uint8Array | ArrayBuffer | undefined, target: 'Uint8Array' | 'ArrayBuffer'): Uint8Array | ArrayBuffer | undefined;
-    init(): void;
+    protected init(): void;
     protected getFn<T>(t: T, p: string, receiver: any): any;
     protected setFn<T>(t: T, p: string, newValue: any, receiver: any): boolean;
     getVal(key: string): string | null | undefined;
