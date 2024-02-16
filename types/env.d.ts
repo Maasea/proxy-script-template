@@ -24,4 +24,5 @@ declare global {
     const $notify: (title: string, subtitle: string, message: string, option?: NotifyOption) => void
     const $prefs: Prefs
     const $task: Task
+    const $argument: string | undefined
 }
